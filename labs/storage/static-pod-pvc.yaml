@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: static-pod
+  labels:
+    app: static-storage
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: static-storage
+
+  template:
+    metadata:
+      labels:
+        app: static-storage
+    spec:
+      containers:
+        - name: website
+          image: cachac/kubelabs-static-storage:1.0.0
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: web-claim
+              mountPath: /var/log/nginx
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"
+
+      volumes:
+        - name: web-claim
+          persistentVolumeClaim:
+            claimName: static-pvc
