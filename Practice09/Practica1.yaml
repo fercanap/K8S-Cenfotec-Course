@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-practica-1
+  namespace: practica
+  labels:
+    lab: uno
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      lab: uno
+  template:
+    metadata:
+      labels:
+        lab: uno
+    spec:
+      containers:
+      - name: app-uno
+        image: cachac/kubelabs:3.0
+        ports:
+        - containerPort: 8080
