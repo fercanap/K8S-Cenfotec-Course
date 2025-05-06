@@ -1,0 +1,96 @@
+📋 Collecting Kubernetes diagnostics...
+Generated on: Tue May  6 17:57:04 UTC 2025
+==========================
+
+🔍 Current context and cluster info:
+kind-demo
+Kubernetes control plane is running at https://127.0.0.1:41283
+CoreDNS is running at https://127.0.0.1:41283/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+
+🔧 Kubernetes version:
+error: unknown flag: --short
+See 'kubectl version --help' for usage.
+
+🧱 Cluster Nodes:
+NAME                 STATUS   ROLES           AGE   VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION      CONTAINER-RUNTIME
+demo-control-plane   Ready    control-plane   10h   v1.27.3   172.18.0.3    <none>        Debian GNU/Linux 11 (bullseye)   6.11.0-1013-azure   containerd://1.7.1
+demo-worker          Ready    <none>          10h   v1.27.3   172.18.0.2    <none>        Debian GNU/Linux 11 (bullseye)   6.11.0-1013-azure   containerd://1.7.1
+demo-worker2         Ready    <none>          10h   v1.27.3   172.18.0.4    <none>        Debian GNU/Linux 11 (bullseye)   6.11.0-1013-azure   containerd://1.7.1
+demo-worker3         Ready    <none>          10h   v1.27.3   172.18.0.5    <none>        Debian GNU/Linux 11 (bullseye)   6.11.0-1013-azure   containerd://1.7.1
+
+📂 Namespaces:
+NAME                 STATUS   AGE
+default              Active   10h
+kube-node-lease      Active   10h
+kube-public          Active   10h
+kube-system          Active   10h
+local-path-storage   Active   10h
+
+📦 All resources (all namespaces):
+NAMESPACE            NAME                                             READY   STATUS    RESTARTS        AGE
+kube-system          pod/coredns-5d78c9869d-8vbql                     1/1     Running   1 (5m8s ago)    10h
+kube-system          pod/coredns-5d78c9869d-9s9hk                     1/1     Running   1 (5m8s ago)    10h
+kube-system          pod/etcd-demo-control-plane                      1/1     Running   0               4m55s
+kube-system          pod/kindnet-pqshn                                1/1     Running   1 (5m9s ago)    10h
+kube-system          pod/kindnet-rpbch                                1/1     Running   1 (5m9s ago)    10h
+kube-system          pod/kindnet-wdjqx                                1/1     Running   1 (5m8s ago)    10h
+kube-system          pod/kindnet-zknvj                                1/1     Running   1 (5m9s ago)    10h
+kube-system          pod/kube-apiserver-demo-control-plane            1/1     Running   0               4m55s
+kube-system          pod/kube-controller-manager-demo-control-plane   1/1     Running   1 (5m8s ago)    10h
+kube-system          pod/kube-proxy-4jjpx                             1/1     Running   1 (5m9s ago)    10h
+kube-system          pod/kube-proxy-d2vk4                             1/1     Running   1 (5m8s ago)    10h
+kube-system          pod/kube-proxy-gl57s                             1/1     Running   1 (5m9s ago)    10h
+kube-system          pod/kube-proxy-srw5d                             1/1     Running   1 (5m9s ago)    10h
+kube-system          pod/kube-scheduler-demo-control-plane            1/1     Running   1 (5m8s ago)    10h
+local-path-storage   pod/local-path-provisioner-6bc4bddd6b-f7jc4      1/1     Running   2 (4m14s ago)   10h
+
+NAMESPACE     NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE
+default       service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP                  10h
+kube-system   service/kube-dns     ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP,9153/TCP   10h
+
+NAMESPACE     NAME                        DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+kube-system   daemonset.apps/kindnet      4         4         4       4            4           kubernetes.io/os=linux   10h
+kube-system   daemonset.apps/kube-proxy   4         4         4       4            4           kubernetes.io/os=linux   10h
+
+NAMESPACE            NAME                                     READY   UP-TO-DATE   AVAILABLE   AGE
+kube-system          deployment.apps/coredns                  2/2     2            2           10h
+local-path-storage   deployment.apps/local-path-provisioner   1/1     1            1           10h
+
+NAMESPACE            NAME                                                DESIRED   CURRENT   READY   AGE
+kube-system          replicaset.apps/coredns-5d78c9869d                  2         2         2       10h
+local-path-storage   replicaset.apps/local-path-provisioner-6bc4bddd6b   1         1         1       10h
+
+🧪 Recent cluster events:
+NAMESPACE            LAST SEEN   TYPE      REASON                    OBJECT                                                           MESSAGE
+default              5m7s        Normal    NodeAllocatableEnforced   node/demo-worker                                                 Updated Node Allocatable limit across pods
+default              5m7s        Normal    NodeAllocatableEnforced   node/demo-worker2                                                Updated Node Allocatable limit across pods
+default              5m7s        Normal    NodeAllocatableEnforced   node/demo-worker3                                                Updated Node Allocatable limit across pods
+default              5m7s        Normal    Starting                  node/demo-worker                                                 Starting kubelet.
+default              5m7s        Normal    Starting                  node/demo-worker2                                                Starting kubelet.
+default              5m7s        Normal    Starting                  node/demo-worker3                                                Starting kubelet.
+default              5m5s        Normal    NodeAllocatableEnforced   node/demo-control-plane                                          Updated Node Allocatable limit across pods
+default              5m5s        Normal    NodeHasNoDiskPressure     node/demo-control-plane                                          Node demo-control-plane status is now: NodeHasNoDiskPressure
+default              5m5s        Normal    NodeHasSufficientMemory   node/demo-control-plane                                          Node demo-control-plane status is now: NodeHasSufficientMemory
+default              5m5s        Normal    NodeHasSufficientPID      node/demo-control-plane                                          Node demo-control-plane status is now: NodeHasSufficientPID
+default              5m5s        Normal    Starting                  node/demo-control-plane                                          Starting kubelet.
+default              5m1s        Normal    NodeHasNoDiskPressure     node/demo-worker                                                 Node demo-worker status is now: NodeHasNoDiskPressure
+default              5m1s        Normal    NodeHasSufficientMemory   node/demo-worker                                                 Node demo-worker status is now: NodeHasSufficientMemory
+default              5m1s        Normal    NodeHasSufficientPID      node/demo-worker                                                 Node demo-worker status is now: NodeHasSufficientPID
+default              5m          Normal    NodeHasNoDiskPressure     node/demo-worker2                                                Node demo-worker2 status is now: NodeHasNoDiskPressure
+default              5m          Normal    NodeHasNoDiskPressure     node/demo-worker3                                                Node demo-worker3 status is now: NodeHasNoDiskPressure
+default              5m          Normal    NodeHasSufficientMemory   node/demo-worker2                                                Node demo-worker2 status is now: NodeHasSufficientMemory
+default              5m          Normal    NodeHasSufficientMemory   node/demo-worker3                                                Node demo-worker3 status is now: NodeHasSufficientMemory
+default              5m          Normal    NodeHasSufficientPID      node/demo-worker2                                                Node demo-worker2 status is now: NodeHasSufficientPID
+
+🐳 Docker version and OS info:
+Docker version 28.0.4, build b8034c0
+Linux vmKubernetesFernandoca 6.11.0-1013-azure #13~24.04.1-Ubuntu SMP Fri Mar 28 23:43:34 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux
+Distributor ID:	Ubuntu
+Description:	Ubuntu 24.04.2 LTS
+Release:	24.04
+Codename:	noble
+
+🔍 Cluster Type Detection:
+✅ This is a Kind-based Kubernetes cluster
