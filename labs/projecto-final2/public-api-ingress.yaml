@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: public-api-ingress
+  namespace: public
+spec:
+  rules:
+  - host: api.fercanales.kubelabs.dev
+    http:
+      paths:
+      - path: /graphql
+        pathType: Prefix
+        backend:
+          service:
+            name: public-api
+            port:
+              number: 3000
