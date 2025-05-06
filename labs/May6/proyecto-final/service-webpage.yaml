@@ -1,0 +1,12 @@
+# service-webpage.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-webpage
+  namespace: public
+spec:
+  selector:
+    app: webpage
+  ports:
+  - port: 80
+    targetPort: 8080

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: webpage-config
+  namespace: public
+data:
+  config.js: |
+    // Contenido de config.js
+    // Asegúrate que los dominios api.fercanales.kubelabs.online y
+    // websocket.fercanales.kubelabs.online sean correctos para tu TLD (.online o .dev)
+    // El protocolo para websocket (ws:// o wss://) depende si tu Ingress tiene TLS. Usaremos ws://
+    window.ENV = {
+      API_ENDPOINT: 'http://api.fercanales.kubelabs.online/graphql',
+      WEBSOCKET_ENDPOINT: 'ws://websocket.fercanales.kubelabs.online/graphql'
+    };

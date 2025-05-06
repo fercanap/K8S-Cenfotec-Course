@@ -1,0 +1,43 @@
+Pods:
+NAMESPACE            NAME                                         READY   STATUS      RESTARTS       AGE
+ingress-nginx        ingress-nginx-admission-create-jqrbf         0/1     Completed   0              5m2s
+ingress-nginx        ingress-nginx-admission-patch-js7f7          0/1     Completed   0              5m2s
+ingress-nginx        ingress-nginx-controller-574c5664-r6s56      1/1     Running     0              5m3s
+kube-system          coredns-5d78c9869d-8vbql                     1/1     Running     1 (3h6m ago)   13h
+kube-system          coredns-5d78c9869d-9s9hk                     1/1     Running     1 (3h6m ago)   13h
+kube-system          etcd-demo-control-plane                      1/1     Running     0              3h6m
+kube-system          kindnet-pqshn                                1/1     Running     1 (3h6m ago)   13h
+kube-system          kindnet-rpbch                                1/1     Running     1 (3h6m ago)   13h
+kube-system          kindnet-wdjqx                                1/1     Running     1 (3h6m ago)   13h
+kube-system          kindnet-zknvj                                1/1     Running     1 (3h6m ago)   13h
+kube-system          kube-apiserver-demo-control-plane            1/1     Running     0              3h6m
+kube-system          kube-controller-manager-demo-control-plane   1/1     Running     1 (3h6m ago)   13h
+kube-system          kube-proxy-4jjpx                             1/1     Running     1 (3h6m ago)   13h
+kube-system          kube-proxy-d2vk4                             1/1     Running     1 (3h6m ago)   13h
+kube-system          kube-proxy-gl57s                             1/1     Running     1 (3h6m ago)   13h
+kube-system          kube-proxy-srw5d                             1/1     Running     1 (3h6m ago)   13h
+kube-system          kube-scheduler-demo-control-plane            1/1     Running     1 (3h6m ago)   13h
+kube-system          metrics-server-598746d78d-kfbd2              1/1     Running     0              4m44s
+local-path-storage   local-path-provisioner-6bc4bddd6b-f7jc4      1/1     Running     2 (3h5m ago)   13h
+private              deploy-private-api-6b749bb6d-hn678           1/1     Running     0              13m
+public               deploy-public-api-78f5586ffb-j882n           1/1     Running     0              13m
+public               deploy-public-api-78f5586ffb-msd2k           1/1     Running     0              13m
+public               deploy-public-api-78f5586ffb-t7vxp           1/1     Running     0              13m
+public               deploy-webpage-65bf7996cc-cmpwl              1/1     Running     0              13m
+public               deploy-webpage-65bf7996cc-q2tgx              1/1     Running     0              13m
+public               deploy-websocket-74d8996b8b-78dsp            1/1     Running     0              13m
+
+Ingress:
+NAMESPACE   NAME                 CLASS    HOSTS                               ADDRESS     PORTS   AGE
+public      ingress-public-api   <none>   api.fercanales.kubelabs.dev         localhost   80      13m
+public      ingress-webpage      <none>   fercanales.kubelabs.dev             localhost   80      13m
+public      ingress-websocket    <none>   websocket.fercanales.kubelabs.dev   localhost   80      13m
+
+Services (ingress-nginx):
+NAME                                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+ingress-nginx-controller             NodePort    10.96.101.208   <none>        80:32105/TCP,443:32613/TCP   5m3s
+ingress-nginx-controller-admission   ClusterIP   10.96.160.250   <none>        443/TCP                      5m3s
+
+HPA:
+NAME             REFERENCE                      TARGETS           MINPODS   MAXPODS   REPLICAS   AGE
+hpa-public-api   Deployment/deploy-public-api   0%/35%, 36%/50%   3         6         3          13m

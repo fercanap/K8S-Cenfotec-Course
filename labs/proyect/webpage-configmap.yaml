@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: webpage-config
+  namespace: public
+data:
+  config.js: |
+    // Contenido de config.js con TLD .dev
+    // El protocolo para websocket (ws://) asume que no hay TLS en el Ingress.
+    window.ENV = {
+      API_ENDPOINT: 'http://api.fercanales.kubelabs.dev/graphql',
+      WEBSOCKET_ENDPOINT: 'ws://websocket.fercanales.kubelabs.dev/graphql'
+    };

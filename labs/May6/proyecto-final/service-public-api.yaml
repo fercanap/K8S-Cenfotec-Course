@@ -1,0 +1,12 @@
+# service-public-api.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-public-api
+  namespace: public
+spec:
+  selector:
+    app: public-api
+  ports:
+  - port: 3000
+    targetPort: 3000

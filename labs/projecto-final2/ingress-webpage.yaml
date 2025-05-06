@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ing-webpage
+  namespace: public
+spec:
+  rules:
+    - host: fercanales.kubelabs.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: svc-webpage
+                port:
+                  number: 80

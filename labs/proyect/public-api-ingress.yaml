@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: public-api-ingress
+  namespace: public
+  annotations:
+    # Añade aquí anotaciones específicas si son necesarias
+spec:
+  rules:
+  - host: api.fercanales.kubelabs.dev # Tu subdominio y TLD .dev
+    http:
+      paths:
+      - path: /graphql
+        pathType: Prefix
+        backend:
+          service:
+            name: public-api-svc
+            port:
+              number: 80

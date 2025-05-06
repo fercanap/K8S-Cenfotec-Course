@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-webpage
+  namespace: public
+data:
+  config.js: |
+    window.API_URL="http://api.fercanales.kubelabs.dev/graphql";
+    window.WS_URL="ws://websocket.fercanales.kubelabs.dev/graphql";

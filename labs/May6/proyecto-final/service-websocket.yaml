@@ -1,0 +1,13 @@
+# service-websocket.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-websocket
+  namespace: public
+spec:
+  selector:
+    app: websocket
+  ports:
+  - port: 3001
+    targetPort: 3001
+    name: websocket

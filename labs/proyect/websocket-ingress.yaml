@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: websocket-ingress
+  namespace: public
+  annotations:
+    # Anotaciones específicas para WebSockets pueden ser necesarias aquí
+spec:
+  rules:
+  - host: websocket.fercanales.kubelabs.dev # Tu subdominio y TLD .dev
+    http:
+      paths:
+      - path: /graphql
+        pathType: Prefix
+        backend:
+          service:
+            name: websocket-svc
+            port:
+              number: 80

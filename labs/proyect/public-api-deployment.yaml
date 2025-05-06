@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: public-api-deploy
+  namespace: public
+  labels:
+    app: public-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: public-api
+  template:
+    metadata:
+      labels:
+        app: public-api
+    spec:
+      containers:
+      - name: public-api-container
+        image: cachac/kubelabs_public_api:1.0.0
+        ports:
+        - containerPort: 3000
+        env:
+        - name: PRIVATE_API
+          valueFrom:
+            configMapKeyRef:
+              name: api-communication-config
+              key: PRIVATE_API
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "100m"
+          limits:
+            memory: "200Mi"
+            cpu: "200m"
+        readinessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 3080
+          initialDelaySeconds: 10
+          periodSeconds: 30
+          timeoutSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 3080
+          initialDelaySeconds: 10
+          periodSeconds: 30
+          timeoutSeconds: 5
+        # --- Montaje Opcional de Logs (Sección 11.1) ---
+        volumeMounts:
+        - name: api-logs-volume
+          mountPath: /app/logs
+      # --- Volumen Opcional de Logs (Sección 11.1) ---
+      volumes:
+      - name: api-logs-volume
+        persistentVolumeClaim:
+          claimName: public-api-logs-pvc # PVC se crea más abajo

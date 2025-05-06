@@ -1,0 +1,12 @@
+# service-private-api.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-private-api
+  namespace: private
+spec:
+  selector:
+    app: private-api
+  ports:
+  - port: 3002
+    targetPort: 3002

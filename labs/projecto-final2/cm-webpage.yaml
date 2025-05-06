@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-webpage
+  namespace: public
+data:
+  config.js: |
+    const config = {
+      domain: "fercanales.kubelabs.dev"
+    }

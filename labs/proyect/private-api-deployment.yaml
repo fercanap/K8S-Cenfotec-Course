@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: private-api-deploy
+  namespace: private
+  labels:
+    app: private-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: private-api
+  template:
+    metadata:
+      labels:
+        app: private-api
+    spec:
+      containers:
+      - name: private-api-container
+        image: cachac/kubelabs_privateapi:1.0.2
+        ports:
+        - containerPort: 3002
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "100m"
+          limits:
+            memory: "200Mi"
+            cpu: "200m"
+        readinessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 3082
+          initialDelaySeconds: 10
+          periodSeconds: 30
+          timeoutSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 3082
+          initialDelaySeconds: 10
+          periodSeconds: 30
+          timeoutSeconds: 5
